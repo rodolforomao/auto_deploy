@@ -3,8 +3,8 @@ import time
 import os
 from datetime import datetime
 from dotenv import load_dotenv
-
-# Carrega as variáveis do .env
+import os
+base_dir = os.path.dirname(os.path.abspath(__file__))
 load_dotenv()
 
 def ssh_git_pull():
@@ -83,7 +83,8 @@ def ssh_git_pull():
 
             # Salva a saída em arquivo .log
             safe_name = git_path.strip("/").replace("/", "_")
-            log_file = "git_pull_" + safe_name + ".log"
+            #log_file = "git_pull_" + safe_name + ".log"
+            log_file = os.path.join(base_dir, "git_pull_" + safe_name + ".log")
             timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             with open(log_file, "w") as f:
                 f.write("Data e hora: " + timestamp + "\n")
